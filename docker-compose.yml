@@ -1,0 +1,27 @@
+services:
+backend:
+ build: ./backend
+ ports:
+  - "8000:8000"
+ depends_on:
+  - mysql
+
+frontend:
+ built: ./frontend
+ ports:
+  - "5173:5173"
+ depends_on:
+  - backend
+
+mysql:
+ image: mysql:8.0
+ environment:
+   MYSQL_DATABASSE: peditri
+   MYSQL_ROOT_PASSWORD: root
+ ports:
+  - "3306:3306"
+ volumes:
+  - mysql_data:/var/lib/mysql
+volumes:
+ mysql_data:
+ 
