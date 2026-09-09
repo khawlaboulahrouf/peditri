@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "../styles/auth.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -26,8 +27,9 @@ function Login() {
     }
   };
 
-  return (
-    <div>
+return (
+  <div className="auth-page">
+    <div className="auth-card">
       <h2>Connexion</h2>
 
       <form onSubmit={handleSubmit}>
@@ -37,6 +39,7 @@ function Login() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Votre email"
           />
         </div>
 
@@ -46,15 +49,17 @@ function Login() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Votre mot de passe"
           />
         </div>
 
         <button type="submit">Se connecter</button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && <p className="auth-message">{message}</p>}
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;

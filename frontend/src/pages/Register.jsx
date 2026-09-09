@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "../styles/auth.css";
 
 function Register(){
     const [name, setName] = useState("");
@@ -30,44 +31,49 @@ function Register(){
         }
     };
 
-    return(
+    return (
+  <div className="auth-page">
+    <div className="auth-card">
+      <h2>Créer un compte</h2>
+
+      <form onSubmit={handleSubmit}>
         <div>
-            <h2>Créer un compte</h2>
-
-            <form onSubmit={handlesubmit}>
-                <div>
-                    <label>Nom</label>
-                    <input 
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-
-                   <div>
-                    <label>Email</label>
-                    <input 
-                      type="text"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-
-                   <div>
-                    <label>Password</label>
-                    <input 
-                      type="text"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-
-                <button type="submit">S'inscrire</button>
-            </form>
-
-            {message && <p>{message}</p>}
+          <label>Nom</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Votre nom"
+          />
         </div>
-    );
+
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Votre email"
+          />
+        </div>
+
+        <div>
+          <label>Mot de passe</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Votre mot de passe"
+          />
+        </div>
+
+        <button type="submit">S'inscrire</button>
+      </form>
+
+      {message && <p className="auth-message">{message}</p>}
+    </div>
+  </div>
+);
 }
 
 export default Register;
