@@ -8,7 +8,7 @@ function Register(){
     const [message, setMessage] = useState("");
 
     const handlesubmit = async (e) => {
-        e.preve,tDefault();
+        e.preventDefault();
 
         try{
             const response = await axios.post(
@@ -40,7 +40,7 @@ function Register(){
                     <input 
                       type="text"
                       value={name}
-                      onchange={(e) => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                     />
                 </div>
 
@@ -49,7 +49,7 @@ function Register(){
                     <input 
                       type="text"
                       value={email}
-                      onchange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
 
@@ -58,7 +58,7 @@ function Register(){
                     <input 
                       type="text"
                       value={password}
-                      onchange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
 
