@@ -1,0 +1,112 @@
+.enfants-page {
+  min-height: 100vh;
+  background: #f4fbff;
+  font-family: Arial, sans-serif;
+  padding: 40px 20px;
+}
+
+.enfants-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.enfants-container h1 {
+  text-align: center;
+  color: #2f6f89;
+  margin-bottom: 30px;
+}
+
+.enfant-form-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.enfant-form-card h2 {
+  color: #2f6f89;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d4e5ec;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.btn-primary,
+.btn-cancel,
+.btn-edit,
+.btn-delete {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.btn-primary {
+  background: #70b7d1;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #559bb5;
+}
+
+.btn-cancel {
+  background: #e5e7eb;
+}
+
+.liste-section h2 {
+  color: #2f6f89;
+}
+
+.enfants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.enfant-card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+.enfant-card h3 {
+  color: #2f6f89;
+}
+
+.actions {
+  margin-top: 15px;
+}
+
+.btn-edit {
+  background: #dff3fa;
+  color: #2f6f89;
+}
+
+.btn-delete {
+  background: #ffe3e3;
+  color: #b42318;
+}
+
+.message {
+  margin-top: 15px;
+  text-align: center;
+}

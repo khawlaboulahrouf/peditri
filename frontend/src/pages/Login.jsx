@@ -25,8 +25,8 @@ function Login() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
       
-      navigate("/logout");
-      
+      navigate("/enfants");
+
       setMessage(response.data.message);
     } catch (error) {
       setMessage("Email ou mot de passe incorrect");
