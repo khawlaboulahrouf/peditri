@@ -10,7 +10,15 @@ use Illuminate\Http\Request;
 class EnfantController extends Controller
 {
     //
-  
+    public function index(Request $request)
+    {
+        $enfants = $request->user()->enfants;
+
+        return response()->json([
+            'enfants' => $enfants
+        ]);
+    }
+
 
     public function store(StoreEnfantRequest $request)
     {

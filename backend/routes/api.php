@@ -15,3 +15,4 @@ Route::post('/login',[AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->post('/enfants',[EnfantController::class, 'store']);
+Route::middleware('auth:sanctum')->get('/enfants', [EnfantController::class, 'index']);
