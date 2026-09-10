@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import "../styles/auth.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -20,7 +23,10 @@ function Login() {
       );
 
       localStorage.setItem("token", response.data.token);
-
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      
+      navigate("/logout");
+      
       setMessage(response.data.message);
     } catch (error) {
       setMessage("Email ou mot de passe incorrect");
@@ -55,6 +61,10 @@ return (
 
         <button type="submit">Se connecter</button>
       </form>
+
+      <p className="auth-link">
+  Vous n'avez pas de compte ? <Link to="/register">Créer un compte</Link>
+</p>
 
       {message && <p className="auth-message">{message}</p>}
     </div>
