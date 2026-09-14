@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->string('titre');
+            $table->string('groupe_age');
+            $table->integer('order');
             $table->timestamps();
         });
     }
