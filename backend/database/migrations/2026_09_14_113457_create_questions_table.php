@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('triages', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('enfant_id')->constrained('enfants')->cascadeOnDelete();
-            $table->string('resultat')->nullable();
-            $table->dateTime('date_debut');
-            $table->dateTime('date_fin')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('triages');
+        Schema::dropIfExists('questions');
     }
 };
