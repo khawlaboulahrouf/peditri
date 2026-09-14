@@ -121,6 +121,9 @@ function Enfants() {
   };
 
   return (
+
+ 
+
     <div className="enfants-page">
       <div className="enfants-container">
         <h1>Mes enfants</h1>
