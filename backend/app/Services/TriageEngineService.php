@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Question;
 use App\Models\Enfant;
+use App\Models\Response;
 use App\Models\Triage;
 use Carbon\Carbon;
 class TriageEngineService
@@ -25,12 +26,28 @@ class TriageEngineService
             $groupAge = '6-12';
         }
 
-        $question = Question::where('group_age' , $groupAge)
+        $question = Question::where('groupe_age' , $groupAge)
            ->orderBy('order')
            ->first();
         return [
             'triage' => $triage,
             'question' => $question,
         ];
+    }
+    public function answerQuestion($triage ,$question , $label)
+    {
+        if($label === 'Oui'){
+            $status = 'MEDIUM';
+        }else{
+            $status = 'LOW';
+        }
+
+        $response = Response::create([
+            'triage_id' => $triage->id,
+            'question_id' => $question->id,
+            'label' => $label,
+            'status' => $status,
+        ]);
+        return $response;
     }
 }

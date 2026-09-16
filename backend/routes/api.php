@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/enfants', [EnfantController::class, 'in
 Route::middleware('auth:sanctum')->get('/enfants/{enfant}', [EnfantController::class, 'show']);
 Route::middleware('auth:sanctum')->put('/enfants/{enfant}', [EnfantController::class, 'update']);
 Route::middleware('auth:sanctum')->delete('/enfants/{enfant}', [EnfantController::class, 'destroy']);
-Route::middleware('auth:sanctum')->post('/enfants/{enfant}/triages',[TriageController::class, 'store']
-);
+Route::middleware('auth:sanctum')->post('/enfants/{enfant}/triages',[TriageController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/triages/{triage}/responses',[TriageController::class, 'answer']);

@@ -17,7 +17,7 @@ class Question extends Model
         'order',
     ];
 
-    public function responses()
+    public function reponses()
     {
         return $this->hasmany(Response::class);
     }

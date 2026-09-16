@@ -4,19 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Enfant;
+use App\Models\Question;
+use App\Models\Triage;
+use Illuminate\Http\Request;
 use App\Services\TriageEngineService;
-// use App\Models\Triage;
-// use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TriageController extends Controller
 {
     use AuthorizesRequests;
 
-    public function store(
-        Enfant $enfant,
-        TriageEngineService $triageService
-    ){
+    public function store( Enfant $enfant,TriageEngineService $triageService){
         $this->authorize('view', $enfant);
         $result = $triageService->startTriage($enfant);
 
@@ -25,6 +23,22 @@ class TriageController extends Controller
             'triage' => $result['triage'],
             'question' => $result['question'],
         ], 201);
+    }
+
+    public function answer(Request $request, Triage $triage ,TriageEngineService $triageService)
+    {
+        $request -> validate([
+            'question_id' => 'required|exists:questions,id',
+            'label' => 'required|string',
+        ]);
+
+       $question = Question::findOrFail($request->question_id);
+       $response = $triageService->answerQuestion($triage , $question , $request->label);
+
+       return response()->json([
+         'message' => 'Réponse enregistrée avec succès' ,
+         'response' => $response
+       ], 201);
     }
 }
 
