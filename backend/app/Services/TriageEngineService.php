@@ -48,6 +48,16 @@ class TriageEngineService
             'label' => $label,
             'status' => $status,
         ]);
-        return $response;
+
+        $nextQuestion = Question::where('groupe_age', $question->groupe_age)
+            ->where('order', '>' , $question->order)
+            ->orderby('order')
+            ->first();
+
+
+        return [
+            'response' => $response,
+            'next_question' => $nextQuestion,
+        ];
     }
 }

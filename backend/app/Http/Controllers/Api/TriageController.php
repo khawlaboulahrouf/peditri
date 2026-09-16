@@ -33,11 +33,12 @@ class TriageController extends Controller
         ]);
 
        $question = Question::findOrFail($request->question_id);
-       $response = $triageService->answerQuestion($triage , $question , $request->label);
+       $result = $triageService->answerQuestion($triage , $question , $request->label);
 
        return response()->json([
          'message' => 'Réponse enregistrée avec succès' ,
-         'response' => $response
+         'response' => $result['response'],
+         'next_question' =>$result['next_question']
        ], 201);
     }
 }
