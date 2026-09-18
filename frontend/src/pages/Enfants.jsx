@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/enfants.css";
+import {useNavigate} from 'react-router-dom';
 
 function Enfants() {
   const [prenom, setPrenom] = useState("");
   const [dateNaissance, setDateNaissance] = useState("");
   const [enfants, setEnfants] = useState([]);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const commencerTriage = (enfantId) => {
+    navigate(`/triage/${enfantId}`);
+  }
 
   const [editId, setEditId] = useState(null);
 
@@ -201,6 +206,10 @@ function Enfants() {
                       onClick={() => handleDelete(enfant.id)}
                     >
                       Supprimer
+                    </button>
+                    <button className = "btn-triage"
+                      onClick = {() => commencerTriage(enfant.id)}>
+                      Commencer le triage
                     </button>
                   </div>
                 </div>
