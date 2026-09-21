@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Enfants from "./pages/Enfants";
 import Triage from "./pages/Triage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -13,8 +14,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/enfants" element={<Enfants />} />
-        <Route path="/triage/:enfantId" element={<Triage/>}/>
+        <Route path="/enfants" element={<ProtectedRoute>
+          <Enfants/>
+        </ProtectedRoute>} />
+        
+        <Route path="/triage/:enfantId" element={<ProtectedRoute>
+          <Triage/>
+        </ProtectedRoute>}/>
+        
       </Routes>
     </BrowserRouter>
   );

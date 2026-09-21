@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/enfants.css";
 import {useNavigate} from 'react-router-dom';
+import Navbar from "../components/Navbar";
 
 function Enfants() {
   const [prenom, setPrenom] = useState("");
@@ -126,7 +127,8 @@ function Enfants() {
   };
 
   return (
-
+<>
+    <Navbar />
  
 
     <div className="enfants-page">
@@ -219,7 +221,10 @@ function Enfants() {
         </div>
       </div>
     </div>
+    </>
   );
+  
+
 }
 
 export default Enfants;
