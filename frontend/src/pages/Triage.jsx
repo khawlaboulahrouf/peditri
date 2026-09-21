@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import "../styles/triage.css";
 
 function Triage() {
     const { enfantId} = useParams();
@@ -55,39 +56,82 @@ function Triage() {
         }
     };
 
-    return (
+   return (
+  <div className="triage-page">
+    <div className="triage-card">
+
+      <h1>Triage pédiatrique</h1>
+
+      {!triage && (
+        <button
+          className="btn-oui"
+          onClick={commencerTriage}
+        >
+          Démarrer le questionnaire
+        </button>
+      )}
+
+      {question && (
         <div>
-            <h1>Triage</h1>
+          <p className="question-number">
+            Question {question.order}
+          </p>
 
-            {!triage && (
-                <button onClick={commencerTriage}>
-                    Démarrer le questionnaire
-                </button>
-            )}
+          <h2 className="question-title">
+            {question.titre}
+          </h2>
 
-            {question && (
-                <div>
-                    <h2>{question.titre}</h2>
+          <div className="triage-actions">
+            <button
+              className="btn-oui"
+              onClick={() => repondre("Oui")}
+            >
+              Oui
+            </button>
 
-                    <button onClick={()=> repondre("Oui")}>
-                        Oui
-                    </button>
-                    <button onClick={() => repondre("Non")}>
-                        Non
-                    </button>
-                </div>
-            )}
-
-            {resultat &&(
-                <div>
-                    <h2>Résultat du triage</h2>
-                    <h3>{resultat}</h3>
-                </div>
-            )}
-
-            {message && <p>{message}</p>}
+            <button
+              className="btn-non"
+              onClick={() => repondre("Non")}
+            >
+              Non
+            </button>
+          </div>
         </div>
-    );
+      )}
+
+      {resultat && (
+        <div className="resultat-card">
+          <h2>Résultat du triage</h2>
+
+          <p className={`resultat resultat-${resultat}`}>
+            {resultat}
+          </p>
+
+          {resultat === "home" && (
+            <p className="resultat-message">
+              Une surveillance à domicile est recommandée.
+            </p>
+          )}
+
+          {resultat === "consultation" && (
+            <p className="resultat-message">
+              Une consultation médicale est recommandée.
+            </p>
+          )}
+
+          {resultat === "urgence" && (
+            <p className="resultat-message">
+              Une prise en charge urgente est recommandée.
+            </p>
+          )}
+        </div>
+      )}
+
+      {message && <p>{message}</p>}
+
+    </div>
+  </div>
+);
 }
 
 export default Triage;
