@@ -19,4 +19,8 @@ class Enfant extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function triages()
+    {
+        return $this->hasMany(Triage::class);
+    }
 }

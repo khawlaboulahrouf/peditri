@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('triages', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('enfant_id')->constrained('enfants')->cascadeOnDelete();
-            $table->string('resultat')->nullable();
-            $table->dateTime('date_debut');
-            $table->dateTime('date_fin')->nullable();
+            $table->foreignId('triage_id')->constrained('triages')->cascadeOnDelete();
+            $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
+            $table->string('label');
+            $table->enum('status',['LOW' , 'MEDIUM' , 'HIGH']);
             $table->timestamps();
         });
-
     }
 
     /**
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('triages');
+        Schema::dropIfExists('responses');
     }
 };
