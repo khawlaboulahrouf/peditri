@@ -38,7 +38,8 @@ class TriageController extends Controller
        return response()->json([
          'message' => 'Réponse enregistrée avec succès' ,
          'response' => $result['response'],
-         'next_question' =>$result['next_question']
+         'next_question' =>$result['next_question'],
+         'resultat' => $triage->fresh()->resultat,
        ], 201);
     }
 }
