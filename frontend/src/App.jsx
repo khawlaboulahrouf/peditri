@@ -5,6 +5,7 @@ import Logout from "./pages/Logout";
 import Enfants from "./pages/Enfants";
 import Triage from "./pages/Triage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Etablissements from "./pages/Etablissements";
 
 function App() {
   return (
@@ -14,15 +15,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/enfants" element={<ProtectedRoute>
-          <Enfants/>
-        </ProtectedRoute>} />
-        
-        <Route path="/triage/:enfantId" element={<ProtectedRoute>
-          <Triage/>
-        </ProtectedRoute>}/>
-        
+        <Route path="/enfants" element={<ProtectedRoute><Enfants /></ProtectedRoute>}/>
+        <Route path="/triage/:enfantId" element={<ProtectedRoute> <Triage /></ProtectedRoute>}/>
+        <Route path="/etablissements" element={<ProtectedRoute><Etablissements /></ProtectedRoute>}/>
       </Routes>
+      
     </BrowserRouter>
   );
 }
