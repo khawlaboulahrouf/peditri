@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EnfantController;
 use App\Http\Controllers\Api\TriageController;
+use App\Http\Controllers\Api\EtablissementController;
 use Laravel\Sanctum\Sanctum;
 
 Route::get('/user', function (Request $request) {
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->put('/enfants/{enfant}', [EnfantController::c
 Route::middleware('auth:sanctum')->delete('/enfants/{enfant}', [EnfantController::class, 'destroy']);
 Route::middleware('auth:sanctum')->post('/enfants/{enfant}/triages',[TriageController::class, 'store']);
 Route::middleware('auth:sanctum')->post('/triages/{triage}/responses',[TriageController::class, 'answer']);
+Route::middleware('auth:sanctum')->get('/etablissements',[EtablissementController::class,'index']);
