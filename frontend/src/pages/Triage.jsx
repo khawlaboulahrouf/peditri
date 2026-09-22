@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "../styles/triage.css";
@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 
 function Triage() {
   const { enfantId } = useParams();
+  const navigate = useNavigate();
   const [triage, setTriage] = useState(null);
   const [question, setQuestion] = useState(null);
   const [message, setMessage] = useState("");
@@ -112,15 +113,33 @@ function Triage() {
               )}
 
               {resultat === "consultation" && (
-                <p className="resultat-message">
-                  Une consultation médicale est recommandée.
-                </p>
+                <>
+                  <p className="resultat-message">
+                    Une consultation médicale est recommandée.
+                  </p>
+
+                  <button
+                    className="btn-oui"
+                    onClick={() => navigate("/etablissements?type=pediatre")}
+                  >
+                    Voir les pédiatres
+                  </button>
+                </>
               )}
 
               {resultat === "urgence" && (
-                <p className="resultat-message">
-                  Une prise en charge urgente est recommandée.
-                </p>
+                <>
+                  <p className="resultat-message">
+                    Une prise en charge urgente est recommandée.
+                  </p>
+
+                  <button
+                    className="btn-oui"
+                    onClick={() => navigate("/etablissements?type=urgence")}
+                  >
+                    Voir les urgences
+                  </button>
+                </>
               )}
             </div>
           )}

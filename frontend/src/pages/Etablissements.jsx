@@ -12,9 +12,9 @@ function Etablissements() {
 
     useEffect(() => {
         const getEtablissements = async () => {
-            try{
+            try {
                 const response = await axios.get(
-                    `http:127.0.0.1:8000/api/etablissements?type=${type}`,
+                    `http://127.0.0.1:8000/api/etablissements?type=${type}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -24,15 +24,16 @@ function Etablissements() {
                 );
 
                 setEtablissements(response.data);
-            }catch (error) {
+            } catch (error) {
                 console.error(error);
             }
         };
 
         getEtablissements();
     }, [type, token]);
+
     return (
-         <>
+        <>
             <Navbar />
 
             <div>
@@ -54,4 +55,5 @@ function Etablissements() {
         </>
     );
 }
+
 export default Etablissements;
