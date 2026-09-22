@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import "../styles/etablissements.css";
 
 function Etablissements() {
     const [etablissements, setEtablissements] = useState([]);
@@ -32,28 +33,44 @@ function Etablissements() {
         getEtablissements();
     }, [type, token]);
 
-    return (
-        <>
-            <Navbar />
+   return (
+    <>
+        <Navbar />
 
-            <div>
-                <h1>
+        <div className="etablissements-page">
+            <div className="etablissements-container">
+
+                <h1 className="etablissements-title">
                     {type === "pediatre"
                         ? "Pédiatres"
                         : "Services d'urgence"}
                 </h1>
 
                 {etablissements.map((etablissement) => (
-                    <div key={etablissement.id}>
+                    <div
+                        className="etablissement-card"
+                        key={etablissement.id}
+                    >
                         <h2>{etablissement.nom}</h2>
-                        <p>{etablissement.adresse}</p>
-                        <p>{etablissement.ville}</p>
-                        <p>{etablissement.telephone}</p>
+
+                        <p>
+                            📍 {etablissement.adresse}
+                        </p>
+
+                        <p>
+                            🏙️ {etablissement.ville}
+                        </p>
+
+                        <p className="etablissement-phone">
+                            📞 {etablissement.telephone}
+                        </p>
                     </div>
                 ))}
+
             </div>
-        </>
-    );
+        </div>
+    </>
+);
 }
 
 export default Etablissements;

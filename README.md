@@ -1,58 +1,210 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 👶 PédiTri
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Présentation
 
-## About Laravel
+**PédiTri** est une application web d'aide à l'orientation des parents face aux symptômes de leurs enfants.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+L'application permet au parent de créer le profil de son enfant, de répondre à un questionnaire de triage pédiatrique et d'obtenir une orientation selon les réponses fournies :
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- 🟢 Surveillance à domicile
+- 🟠 Consultation recommandée
+- 🔴 Urgence
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Selon le résultat, l'application peut également afficher une liste de pédiatres ou de services d'urgence.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🎯 Objectifs
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Faciliter l'orientation du parent à travers un questionnaire simple.
+- Adapter le questionnaire au groupe d'âge de l'enfant.
+- Enregistrer les réponses du triage.
+- Déterminer un résultat à la fin du questionnaire.
+- Orienter le parent vers des établissements selon le résultat.
+- Sécuriser l'accès aux profils des enfants.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## ✨ Fonctionnalités
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Authentification
+- Inscription d'un parent
+- Connexion
+- Déconnexion
+- Authentification avec Laravel Sanctum
+- Routes protégées
 
-```bash
-composer require laravel/boost --dev
+### Gestion des enfants
+- Ajouter un enfant
+- Afficher les enfants du parent
+- Modifier un enfant
+- Supprimer un enfant
+- Protection des profils avec une Policy Laravel
 
-php artisan boost:install
+### Triage pédiatrique
+- Démarrage d'un triage pour un enfant
+- Questionnaire adapté au groupe d'âge
+- 6 questions par questionnaire
+- Réponses Oui / Non
+- Enregistrement de chaque réponse
+- Barre de progression
+- Calcul du résultat après la dernière question
+
+### Résultat
+Trois orientations sont possibles :
+
+- `home` : surveillance à domicile
+- `consultation` : consultation médicale recommandée
+- `urgence` : prise en charge urgente recommandée
+
+### Établissements
+- Affichage des pédiatres pour une consultation
+- Affichage des services d'urgence pour une urgence
+- Filtrage des établissements par type
+
+---
+
+## 🛠️ Technologies utilisées
+
+### Frontend
+- React
+- Vite
+- JavaScript
+- Axios
+- React Router
+- CSS
+
+### Backend
+- PHP
+- Laravel
+- Laravel Sanctum
+- API REST
+
+### Base de données
+- MySQL
+
+### Outils
+- Git / GitHub
+- Postman
+- Docker
+- Docker Compose
+- Docker Hub
+
+---
+
+## 🏗️ Architecture du projet
+
+```text
+peditri/
+│
+├── backend/          # API Laravel
+├── frontend/         # Application React
+├── docker-compose.yml
+└── README.md
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Le fonctionnement général de l'application suit le flux :
 
-## Contributing
+```text
+React
+  ↓
+API REST Laravel
+  ↓
+Controllers / Services / Models
+  ↓
+MySQL
+  ↓
+Réponse JSON
+  ↓
+React
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+La logique métier du triage est centralisée dans `TriageEngineService`.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🗃️ Principales entités
 
-## Security Vulnerabilities
+- User
+- Enfant
+- Triage
+- Question
+- Response
+- Etablissement
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🔄 Fonctionnement du triage
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Le parent se connecte.
+2. Il sélectionne ou crée un enfant.
+3. Il démarre un triage.
+4. L'application détermine le groupe d'âge de l'enfant.
+5. Les questions correspondantes sont affichées.
+6. Le parent répond aux 6 questions.
+7. Chaque réponse est enregistrée avec un niveau :
+   - LOW
+   - MEDIUM
+   - HIGH
+8. Après la dernière question, l'application détermine le résultat.
+9. Le parent reçoit une orientation.
+10. En cas de consultation ou d'urgence, il peut consulter les établissements correspondants.
+
+---
+
+## 🐳 Docker
+
+Le projet peut être exécuté avec Docker.
+
+Services utilisés :
+
+- Frontend React
+- Backend Laravel
+- MySQL
+
+### Lancer le projet
+
+À la racine du projet :
+
+```bash
+docker compose up --build
+```
+
+L'application est ensuite accessible sur :
+
+```text
+Frontend : http://localhost:5173
+Backend  : http://localhost:8000
+```
+
+La base MySQL du projet est exposée sur le port `3308`.
+
+---
+
+## 🧪 Tests de l'API
+
+Les principales routes de l'API ont été testées avec **Postman**, notamment :
+
+- Authentification
+- Gestion des enfants
+- Démarrage du triage
+- Enregistrement des réponses
+- Résultat du triage
+- Liste des établissements
+
+---
+
+## ⚠️ Remarque
+
+PédiTri est un projet pédagogique réalisé dans le cadre d'une formation en développement web.
+
+L'application fournit une orientation à partir d'un questionnaire et ne remplace pas un diagnostic ou un avis médical professionnel.
+
+---
+
+## 👩‍💻 Auteur
+
+**Khaoula Boulahrouf**
+
+Projet Fil Rouge — Développement Web et Web Mobile  
+ENAA

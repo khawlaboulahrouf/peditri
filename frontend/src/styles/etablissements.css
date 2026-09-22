@@ -1,0 +1,39 @@
+.etablissements-page {
+    min-height: 100vh;
+    background-color: #f5f9fb;
+    padding: 40px 20px;
+}
+
+.etablissements-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.etablissements-title {
+    color: #246b82;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.etablissement-card {
+    background-color: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.etablissement-card h2 {
+    color: #246b82;
+    margin-bottom: 15px;
+}
+
+.etablissement-card p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.etablissement-phone {
+    font-weight: 600;
+    color: #246b82 !important;
+}
