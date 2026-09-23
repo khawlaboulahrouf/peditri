@@ -13,7 +13,7 @@ class Question extends Model
 
     protected $fillable = [
         'titre',
-        'group_age',
+        'groupe_age',
         'order',
     ];
 
