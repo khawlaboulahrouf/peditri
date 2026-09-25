@@ -25,7 +25,11 @@ function Login() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
       
-      navigate("/enfants");
+      if (response.data.user.role === "admin") {
+    navigate("/admin");
+} else {
+    navigate("/enfants");
+}
 
       setMessage(response.data.message);
     } catch (error) {
